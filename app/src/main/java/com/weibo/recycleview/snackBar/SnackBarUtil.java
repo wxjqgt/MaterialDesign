@@ -1,4 +1,4 @@
-package com.weibo.recycleview;
+package com.weibo.recycleview.snackBar;
 
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.weibo.recycleview.R;
 
 /**
  * Created by Administrator on 2016/7/15.

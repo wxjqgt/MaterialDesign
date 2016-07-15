@@ -42,4 +42,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
     compile 'com.android.support:design:23.3.0'
+    compile 'com.google.android:flexbox:0.1.2'
 }

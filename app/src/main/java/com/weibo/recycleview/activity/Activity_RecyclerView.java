@@ -1,15 +1,17 @@
-package com.weibo.recycleview;
+package com.weibo.recycleview.activity;
 
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.TextView;
 
+import com.weibo.recycleview.R;
 import com.weibo.recycleview.recyclerView.CommonAdapter;
 import com.weibo.recycleview.recyclerView.HeaderdAndFooterWrapper;
-import com.weibo.recycleview.recyclerView.OnRecyclerViewItemClickListener;
+import com.weibo.recycleview.recyclerView.ItemCallback;
 import com.weibo.recycleview.recyclerView.ViewHolder;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class Activity_RecyclerView extends AppCompatActivity {
     }
 
     private void initRe() {
-        headerandfooter.setLayoutManager(new GridLayoutManager(this, 2));
+        headerandfooter.setLayoutManager(new LinearLayoutManager(this));
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             list.add(String.valueOf(i));
@@ -48,25 +50,18 @@ public class Activity_RecyclerView extends AppCompatActivity {
             }
         };
         HeaderdAndFooterWrapper headerdAndFooterWrapper = new HeaderdAndFooterWrapper(commonAdapter);
-        TextView textView = new TextView(this);
-        textView.setText("我是韦大帅");
         TextView textView1 = new TextView(this);
         textView1.setText("我是大帅哥");
-        headerdAndFooterWrapper.addHearderView(textView);
         headerdAndFooterWrapper.addHearderView(textView1);
         headerandfooter.setAdapter(headerdAndFooterWrapper);
 
-        headerandfooter.addOnItemTouchListener(new OnRecyclerViewItemClickListener(headerandfooter) {
-            @Override
-            public void OnItemClickLitener(RecyclerView.ViewHolder viewHolder) {
-                Snackbar.make(headerandfooter, "OnItemClickLitener", Snackbar.LENGTH_LONG).show();
-            }
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new ItemCallback(list));
+        itemTouchHelper.attachToRecyclerView(headerandfooter);
 
-            @Override
-            public void OnItemLongClickLitener(RecyclerView.ViewHolder viewHolder) {
-                Snackbar.make(headerandfooter, "OnItemLongClickLitener", Snackbar.LENGTH_LONG).show();
-            }
-        });
+        //用于过滤掉不想要的长按开始拖拽事件
+        //itemTouchHelper.startDrag(holder);
+
     }
 
     @Override
