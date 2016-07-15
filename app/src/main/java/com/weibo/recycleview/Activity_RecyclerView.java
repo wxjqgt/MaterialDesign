@@ -1,15 +1,11 @@
 package com.weibo.recycleview;
 
-import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.weibo.recycleview.recyclerView.CommonAdapter;
 import com.weibo.recycleview.recyclerView.HeaderdAndFooterWrapper;
@@ -23,11 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity {
+public class Activity_RecyclerView extends AppCompatActivity {
 
     private Unbinder unbinder;
 
-    @BindView(R.id.headerandfooter) RecyclerView headerandfooter;
+    @BindView(R.id.headerandfooter)
+    RecyclerView headerandfooter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
         headerandfooter.addOnItemTouchListener(new OnRecyclerViewItemClickListener(headerandfooter) {
             @Override
             public void OnItemClickLitener(RecyclerView.ViewHolder viewHolder) {
-                Snackbar.make(headerandfooter,"OnItemClickLitener", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(headerandfooter, "OnItemClickLitener", Snackbar.LENGTH_LONG).show();
             }
 
             @Override
             public void OnItemLongClickLitener(RecyclerView.ViewHolder viewHolder) {
-                Snackbar.make(headerandfooter,"OnItemLongClickLitener", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(headerandfooter, "OnItemLongClickLitener", Snackbar.LENGTH_LONG).show();
             }
         });
     }
