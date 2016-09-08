@@ -3,13 +3,11 @@ package com.weibo.recycleview.recyclerView;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Vibrator;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.Toast;
 
-import com.weibo.recycleview.AppApplication;
+import com.weibo.recycleview.MainApp;
 
 import java.util.Collections;
 import java.util.List;
@@ -48,7 +46,7 @@ public class ItemCallback<T> extends ItemTouchHelper.Callback {
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             viewHolder.itemView.setBackgroundColor(Color.LTGRAY);
-            Vibrator vibrator = (Vibrator) AppApplication.getAppContext()
+            Vibrator vibrator = (Vibrator) MainApp.getAppContext()
                     .getSystemService(Context.VIBRATOR_SERVICE);
             //震动100毫秒
             vibrator.vibrate(100);

@@ -11,43 +11,31 @@ import com.weibo.recycleview.R;
 import com.weibo.recycleview.flexBox.TagAdapter;
 import com.weibo.recycleview.flexBox.TagFlowLayout;
 
-public class Activity_FlexBox extends AppCompatActivity {
+import butterknife.BindView;
 
-    TagFlowLayout tagFlowLayout;
-    LayoutInflater mInflater;
-
-    private String[] mVals = new String[]
-            {"Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
-                    "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
-                    "Android", "Weclome Hello", "Button Text", "TextView"};
+public class Activity_FlexBox extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flex_box);
 
         mInflater = LayoutInflater.from(this);
 
-        tagFlowLayout = (TagFlowLayout) findViewById(R.id.id_tagFlowLayout);
-        tagFlowLayout.setAdapter(new TagAdapter<String>(mVals)
-        {
+        tagFlowLayout.setAdapter(new TagAdapter<String>(mVals) {
             @Override
-            protected View getView(ViewGroup parent, int position, String s)
-            {
+            protected View getView(ViewGroup parent, int position, String s) {
                 TextView tv = (TextView) mInflater.inflate(R.layout.tv, parent, false);
                 tv.setText(s);
                 return tv;
             }
 
             @Override
-            protected void onSelect(ViewGroup parent, View view, int position)
-            {
+            protected void onSelect(ViewGroup parent, View view, int position) {
                 //view.setBackgroundResource(R.drawable.checked_bg);
             }
 
             @Override
-            protected void onUnSelect(ViewGroup parent, View view, int position)
-            {
+            protected void onUnSelect(ViewGroup parent, View view, int position) {
                 //view.setBackgroundResource(R.drawable.normal_bg);
             }
 
@@ -63,4 +51,22 @@ public class Activity_FlexBox extends AppCompatActivity {
 
 //        tagFlowLayout.setJustifyContent(FlexboxLayout.JUSTIFY_CONTENT_CENTER);
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_flex_box;
+    }
+
+
+    @BindView(R.id.id_tagFlowLayout)
+    TagFlowLayout tagFlowLayout;
+
+    LayoutInflater mInflater;
+
+    private String[] mVals = new String[]{
+            "Hello", "Android", "Weclome Hi ", "Button", "TextView", "Hello",
+            "Android", "Weclome", "Button ImageView", "TextView", "Helloworld",
+            "Android", "Weclome Hello", "Button Text", "TextView"
+    };
+
 }

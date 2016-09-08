@@ -3,8 +3,10 @@ package com.weibo.recycleview.activity;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.TextView;
 
@@ -21,21 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class Activity_RecyclerView extends AppCompatActivity {
-
-    private Unbinder unbinder;
-
-    @BindView(R.id.headerandfooter)
-    RecyclerView headerandfooter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        unbinder = ButterKnife.bind(this);
-
-        initRe();
-    }
+public class Activity_RecyclerView extends BaseActivity {
 
     private void initRe() {
         headerandfooter.setLayoutManager(new LinearLayoutManager(this));
@@ -61,14 +49,20 @@ public class Activity_RecyclerView extends AppCompatActivity {
 
         //用于过滤掉不想要的长按开始拖拽事件
         //itemTouchHelper.startDrag(holder);
-
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (unbinder != null) {
-            unbinder.unbind();
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initRe();
     }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @BindView(R.id.headerandfooter)
+    RecyclerView headerandfooter;
+
 }
